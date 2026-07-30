@@ -105,6 +105,38 @@ Without this, Claude gives generic paid media advice. With it, Claude gives advi
 
 These answers are only possible when campaign data, institutional knowledge, and historical records exist in the same context — which is exactly what this MCP provides.
 
+### Architecture
+
+```mermaid
+flowchart LR
+    Claude[Claude Desktop / Claude Code] <-->|MCP protocol| Server[paid-media-mcp server]
+
+    subgraph Adapters["Adapter layer (src/adapters/)"]
+        direction TB
+        File[FileAdapter\nJSON files]
+        BQA[BigQueryAdapter]
+        Custom[Custom API adapter\nPaidMediaAdapter interface]
+        Composite[CompositeAdapter\nroutes per domain]
+    end
+
+    Server --> Composite
+    Composite --> File
+    Composite --> BQA
+    Composite --> Custom
+
+    File --> Data[/"data/*.json\nteams, attribution, audiences,\ntesting, measurement, campaigns"/]
+    BQA --> BQ[(BigQuery\nshared with paid-media-agent)]
+    Custom --> Platforms[(Live ad platform APIs\nGoogle Ads, Meta, DV360, SA360, LinkedIn, TikTok...)]
+
+    Agent["paid-media-agent\n(Watchdog / Analyst / Operator on Cloud Run)"] -->|writes| BQ
+    Server -->|OIDC-authenticated HTTP| Agent
+
+    classDef repo fill:#4c6ef5,color:#fff,stroke:none;
+    class Server,Agent repo;
+```
+
+`paid-media-mcp` reads campaign data, institutional knowledge, and agent outputs (mostly via BigQuery or local JSON) and can call `paid-media-agent`'s HTTP routes for live queries and guardrail-checked actions. See [paid-media-agent](https://github.com/kenlim5656/paid-media-agent) for the write-path/execution side of the suite.
+
 ---
 
 ## Quick start
