@@ -2,13 +2,13 @@
 
 ## Part of the Paid Media AI Suite
 
-This is one component of a three-part system. See [paid-media-agent](https://github.com/arcticgreyy/paid-media-agent) for the full architecture, setup guide, and AGENT.md.
+This is one component of a three-part system. See [paid-media-agent](https://github.com/kenlim5656/paid-media-agent) for the full architecture, setup guide, and AGENT.md.
 
 | Component | Role |
 |-----------|------|
-| **[paid-media-agent](https://github.com/arcticgreyy/paid-media-agent)** | Autonomous agents + BigQuery schema DDL — Watchdog, Analyst, Operator on Cloud Run; schema in `schema/bigquery/` |
-| **[paid-media-mcp](https://github.com/arcticgreyy/paid-media-mcp)** ← you are here | Interactive data server — connects Claude to campaign data and agent outputs |
-| **[skills](https://github.com/arcticgreyy/skills)** | Interactive skill library — 16+ paid-media skills for Claude Code |
+| **[paid-media-agent](https://github.com/kenlim5656/paid-media-agent)** | Autonomous agents + BigQuery schema DDL — Watchdog, Analyst, Operator on Cloud Run; schema in `schema/bigquery/` |
+| **[paid-media-mcp](https://github.com/kenlim5656/paid-media-mcp)** ← you are here | Interactive data server — connects Claude to campaign data and agent outputs |
+| **[skills](https://github.com/kenlim5656/skills)** | Interactive skill library — 16+ paid-media skills for Claude Code |
 
 
 # Paid Media MCP
@@ -25,9 +25,9 @@ This MCP is one part of a three-piece toolkit for a Claude-powered paid media wo
 
 | Component | What it does |
 |---|---|
-| **[paid-media-mcp](https://github.com/arcticgreyy/paid-media-mcp)** ← you are here | MCP server — connects Claude to your campaign data, team structure, performance history, and institutional knowledge |
-| **[paid-media-mcp-setup skills](https://github.com/arcticgreyy/skills/tree/main/paid-media-mcp-setup)** | Setup wizard and data import skills — populate your data files from BigQuery, spreadsheets, or platform exports, and keep them current |
-| **[paid-media skills](https://github.com/arcticgreyy/skills/tree/main/paid-media)** | Campaign strategy and execution skills — DV360, DCO, PPC, CM360 click trackers, and more. Work best when this MCP is connected. |
+| **[paid-media-mcp](https://github.com/kenlim5656/paid-media-mcp)** ← you are here | MCP server — connects Claude to your campaign data, team structure, performance history, and institutional knowledge |
+| **[paid-media-mcp-setup skills](https://github.com/kenlim5656/skills/tree/main/paid-media-mcp-setup)** | Setup wizard and data import skills — populate your data files from BigQuery, spreadsheets, or platform exports, and keep them current |
+| **[paid-media skills](https://github.com/kenlim5656/skills/tree/main/paid-media)** | Campaign strategy and execution skills — DV360, DCO, PPC, CM360 click trackers, and more. Work best when this MCP is connected. |
 
 **How they fit together:**
 1. Clone this repo and run the `/paid-media/setup` skill to populate your data files
@@ -121,7 +121,7 @@ These answers are only possible when campaign data, institutional knowledge, and
 > pre-commit guard against committing private assets.
 
 ```bash
-git clone https://github.com/arcticgreyy/paid-media-mcp.git
+git clone https://github.com/kenlim5656/paid-media-mcp.git
 cd paid-media-mcp
 npm install
 ```
@@ -1082,7 +1082,7 @@ The BigQueryAdapter targets the `paid-media-agent` canonical schema. If using th
 
 > The full cross-repo column contract (every agent-output table this server
 > reads, the HTTP routes it calls, and the `task27.v1` package format) lives
-> in [`CONTRACT.md` in paid-media-agent](https://github.com/arcticgreyy/paid-media-agent/blob/main/CONTRACT.md).
+> in [`CONTRACT.md` in paid-media-agent](https://github.com/kenlim5656/paid-media-agent/blob/main/CONTRACT.md).
 > Changes to those interfaces must update that file in the same PR.
 
 ```sql
@@ -1338,4 +1338,4 @@ Issues and pull requests welcome. If you build an adapter for a specific platfor
 
 Business Source License 1.1 (BSL 1.1). Persistent attribution required.
 See [LICENSE](./LICENSE) and [NOTICE](./NOTICE) for terms.
-© 2026 @arcticgreyy
+© 2026 @kenlim5656
